@@ -20,6 +20,7 @@ def encode(text, to_encode):
                     encoded.write(sim)
                 bits = bits[1:]
         simbol = to_encode.read(1)
+    encoded.write(text.read())
     encoded.close()
 def decode(to_encode_len):
     encoded = open('encoded.txt', 'r')
@@ -29,7 +30,8 @@ def decode(to_encode_len):
         simbol = encoded.read(1)
         bits = ''
         while simbol != '':
-
+            if cnt == to_encode_len:
+                break
             if simbol in rus_letters:
                 bits += '1'
             elif simbol in eng_letters:
